@@ -35,7 +35,7 @@ const HeroSection = () => {
         </div>
         <div className="absolute bottom-10 right-10 w-80 h-96 bg-gray-900/50 rotate-12  rounded-t-full overflow-hidden">
           <img
-            src="/heroLeft.png"
+            src="https://images.pexels.com/photos/10643964/pexels-photo-10643964.jpeg"
             alt=""
             className="object-cover -rotate-12 h-full w-full scale-125"
           />
