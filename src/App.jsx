@@ -1,8 +1,13 @@
 import React from 'react'
+import Navbar from './components/Navbar'
+import HeroSection from './sections/HeroSection'
 
 const App = () => {
   return (
-    <div>App</div>
+    <div className='px-14'>
+      <Navbar/>
+      <HeroSection/>
+    </div>
   )
 }
 
