@@ -1,5 +1,4 @@
 import React from "react";
-import { ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import ProjectCard from "../components/ProjectCard";
 
@@ -73,54 +72,50 @@ const ProjectSection = () => {
   ];
 
   return (
-    <div className="p-10">
+    <div className="p-5 md:p-10">
       <motion.section
         variants={sectionV}
         initial={reduce ? false : "hidden"}
         whileInView={reduce ? undefined : "show"}
         viewport={{ once: true, amount: 0.2 }}
       >
-        {/* Header */}
         <motion.div
           variants={headerWrapV}
           initial={reduce ? false : "hidden"}
           whileInView={reduce ? undefined : "show"}
           viewport={{ once: true, amount: 0.6 }}
-          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8"
+          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20 gap-4 md:gap-8"
         >
           <motion.h2
             variants={headerItemV}
-            className="text-4xl md:text-5xl font-medium tracking-tight text-gray-900"
+            className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-gray-900"
           >
             Recent Projects
           </motion.h2>
 
           <motion.p
             variants={headerItemV}
-            className="text-lg text-gray-500 max-w-sm leading-relaxed md:text-right"
+            className="text-base sm:text-lg text-gray-500 max-w-sm leading-relaxed md:text-right"
           >
             Step into the world of our most recent projects, a showcase of our
             unwavering commitment to progressive design.
           </motion.p>
         </motion.div>
 
-        {/* Grid */}
         <motion.div
           variants={gridV}
           initial={reduce ? false : "hidden"}
           whileInView={reduce ? undefined : "show"}
           viewport={{ once: true, amount: 0.25 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-16"
         >
-          {/* Left Column */}
-          <div className="flex flex-col gap-16">
+          <div className="flex flex-col gap-10 md:gap-16">
             {projectsLeft.map((p, i) => (
               <ProjectCard key={i} {...p} />
             ))}
           </div>
 
-          {/* Right Column */}
-          <div className="flex flex-col gap-16 md:pt-32">
+          <div className="flex flex-col gap-10 md:gap-16 md:pt-32">
             {projectsRight.map((p, i) => (
               <ProjectCard key={i} {...p} />
             ))}

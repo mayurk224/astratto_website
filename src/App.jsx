@@ -7,9 +7,9 @@ import Footer from "./components/Footer";
 
 const App = () => {
   return (
-    <div className="px-14">
+    <div className="px-4 sm:px-6 lg:px-8 xl:px-14">
       <Navbar />
-      <div className="space-y-8">
+      <div className="space-y-8 sm:space-y-12 lg:space-y-16">
         <HeroSection />
         <ServicesSection />
         <ProjectSection />

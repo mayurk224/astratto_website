@@ -29,9 +29,7 @@ const ProjectCard = ({ img, alt, tag, title, desc }) => {
       }
       className="group cursor-pointer"
     >
-      {/* Media */}
       <div className="relative overflow-hidden rounded-4xl aspect-4/3 w-full">
-        {/* Image zoom */}
         <motion.img
           src={img}
           alt={alt}
@@ -42,7 +40,6 @@ const ProjectCard = ({ img, alt, tag, title, desc }) => {
           transition={{ duration: 0.9, ease: easePremium }}
         />
 
-        {/* Premium overlay */}
         {!reduce && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -54,37 +51,56 @@ const ProjectCard = ({ img, alt, tag, title, desc }) => {
           </motion.div>
         )}
 
-        {/* Top right icon */}
         <motion.div
-          className="absolute top-6 right-6 bg-white/95 backdrop-blur-md w-15 h-15 rounded-full flex items-center justify-center shadow-sm border border-black/5"
+          className="
+            absolute
+            top-3 right-3 sm:top-5 sm:right-5 md:top-6 md:right-6
+            bg-white/95 backdrop-blur-md
+            w-12 h-12 sm:w-14 sm:h-14 md:w-15 md:h-15
+            rounded-full flex items-center justify-center
+            shadow-sm border border-black/5
+          "
           whileHover={reduce ? {} : { scale: 1.07, rotate: 45 }}
           transition={{ duration: 0.28, ease: easePremium }}
         >
-          <ArrowUpRight className="w-6 h-6 text-gray-900" />
+          <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6 text-gray-900" />
           <span className="pointer-events-none absolute inset-0 rounded-full ring-0 ring-fuchsia-400/30 transition-all duration-300 group-hover:ring-4" />
         </motion.div>
 
-        {/* Tag */}
         <motion.div
-          className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md px-5 py-2.5 rounded-full shadow-sm border border-black/5"
+          className="
+            absolute
+            bottom-3 left-3 sm:bottom-5 sm:left-5 md:bottom-6 md:left-6
+            bg-white/95 backdrop-blur-md
+            px-4 py-2 sm:px-5 sm:py-2.5
+            rounded-full shadow-sm border border-black/5
+          "
           whileHover={reduce ? {} : { y: -2, scale: 1.02 }}
           transition={{ duration: 0.35, ease: easePremium }}
         >
-          <span className="text-sm font-medium text-gray-900 block">{tag}</span>
+          <span className="text-xs sm:text-sm font-medium text-gray-900 block">
+            {tag}
+          </span>
         </motion.div>
       </div>
 
-      {/* Text */}
-      <div className="mt-8 space-y-3">
+      <div className="mt-5 sm:mt-7 md:mt-8 space-y-2 sm:space-y-3">
         <motion.h3
           initial={false}
           whileHover={reduce ? {} : { x: 2 }}
           transition={{ duration: 0.35, ease: easePremium }}
-          className="text-3xl font-medium tracking-tight text-fuchsia-500 group-hover:text-fuchsia-600 transition-colors"
+          className="
+            font-medium tracking-tight text-fuchsia-500
+            group-hover:text-fuchsia-600 transition-colors
+            text-2xl sm:text-3xl
+          "
         >
           {title}
         </motion.h3>
-        <p className="text-lg text-gray-500 leading-relaxed max-w-md">{desc}</p>
+
+        <p className="text-base sm:text-lg text-gray-500 leading-relaxed max-w-md">
+          {desc}
+        </p>
       </div>
     </motion.article>
   );

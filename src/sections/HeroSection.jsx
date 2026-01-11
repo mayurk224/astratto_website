@@ -66,22 +66,18 @@ const HeroSection = () => {
       className="relative"
     >
       <div className="flex items-center justify-center flex-col h-[85vh] relative overflow-hidden">
-        {/* subtle cinematic overlay */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-0  from-transparent via-transparent to-black/5" />
         </div>
 
-        {/* Subtitle */}
         <motion.p
           variants={fadeUpBlur}
-          className="text-2xl font-semibold text-gray-400 mb-8"
+          className="text-xl md:text-2xl font-semibold text-gray-400 mb-8"
         >
           Ignite the Spark of Inspiration
         </motion.p>
 
-        {/* Heading area */}
-        <div className="flex items-center justify-center flex-col text-center text-8xl font-semibold mb-6">
-          {/* Heading 1 words */}
+        <div className="flex items-center justify-center flex-col text-center text-4xl md:text-6xl lg:text-8xl font-semibold mb-6 z-20 relative">
           <motion.h1 className="tracking-wider leading-snug">
             <motion.span variants={word} className="inline-block mr-4">
               Unleash
@@ -91,16 +87,14 @@ const HeroSection = () => {
             </motion.span>
           </motion.h1>
 
-          {/* Brand row */}
           <motion.div
             variants={fadeUpBlur}
-            className="flex items-center justify-center gap-5 z-20 mt-6"
+            className="flex items-center justify-center gap-2 md:gap-5 z-20 mt-6"
           >
             <span>Brand</span>
 
-            {/* Logo */}
             <motion.div
-              className="rounded-full p-1 h-30 w-30 shrink-0 will-change-transform"
+              className="rounded-full p-1 h-20 w-20 md:h-30 md:w-30 shrink-0 will-change-transform"
               initial={{
                 opacity: 0,
                 scale: 0.9,
@@ -136,19 +130,17 @@ const HeroSection = () => {
             <span>With Our</span>
           </motion.div>
 
-          {/* Secondary heading */}
           <motion.h1
             variants={fadeUpBlur}
-            className="text-8xl font-semibold tracking-wider leading-snug mt-6"
+            className="text-4xl md:text-6xl lg:text-8xl font-semibold tracking-wider leading-snug mt-6"
           >
             Magic Design
           </motion.h1>
         </div>
 
-        {/* Left Image */}
         <motion.div
           variants={imageIn}
-          className="absolute top-10 left-10 w-80 h-96 bg-gray-900/50 -rotate-12 rounded-b-full overflow-hidden will-change-transform"
+          className="absolute top-5 left-5 md:top-10 md:left-10 w-40 h-48 md:w-60 md:h-72 lg:w-80 lg:h-96 bg-gray-900/50 -rotate-12 rounded-b-full overflow-hidden will-change-transform"
           animate={reduce ? {} : { y: [0, 10, 0], x: [0, -6, 0] }}
           transition={
             reduce
@@ -168,10 +160,9 @@ const HeroSection = () => {
           />
         </motion.div>
 
-        {/* Right Image */}
         <motion.div
           variants={imageIn}
-          className="absolute bottom-10 right-10 w-80 h-96 bg-gray-900/50 rotate-12 rounded-t-full overflow-hidden will-change-transform"
+          className="absolute bottom-5 right-5 md:bottom-10 md:right-10 w-40 h-48 md:w-60 md:h-72 lg:w-80 lg:h-96 bg-gray-900/50 rotate-12 rounded-t-full overflow-hidden will-change-transform"
           animate={reduce ? {} : { y: [0, -10, 0], x: [0, 6, 0] }}
           transition={
             reduce
@@ -191,11 +182,10 @@ const HeroSection = () => {
           />
         </motion.div>
 
-        {/* CTA + Wand */}
         <Magnetic>
           <motion.div
             variants={fadeUpBlur}
-            className="absolute bottom-10 left-10 flex gap-3 items-center font-semibold"
+            className="absolute bottom-5 left-5 md:bottom-10 md:left-10 flex gap-2 md:gap-3 items-center font-semibold"
           >
             <motion.button
               whileHover={
@@ -209,7 +199,7 @@ const HeroSection = () => {
               }
               whileTap={reduce ? {} : { scale: 0.97 }}
               transition={{ duration: 0.25, ease: easePremium }}
-              className="border border-amber-600 rounded-full px-5 py-2 hover:bg-amber-600/10 transition-colors duration-300"
+              className="border border-amber-600 rounded-full px-3 py-1 md:px-5 md:py-2 hover:bg-amber-600/10 transition-colors duration-300"
             >
               Create Magic
             </motion.button>
@@ -227,16 +217,15 @@ const HeroSection = () => {
               whileTap={reduce ? {} : { scale: 0.96 }}
               transition={{ duration: 0.25, ease: easePremium }}
               animate={reduce ? {} : { y: [0, -6, 0] }}
-              className="w-14 h-14 flex items-center justify-center rounded-full bg-purple-700 text-white cursor-pointer will-change-transform"
+              className="w-10 h-10 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-purple-700 text-white cursor-pointer will-change-transform"
             >
               <WandSparkles />
             </motion.div>
           </motion.div>
         </Magnetic>
 
-        {/* Badges */}
         <motion.div
-          className="absolute top-10 right-10 flex flex-col gap-2 items-end text-sm"
+          className="absolute top-5 right-5 md:top-10 md:right-10 flex flex-col gap-2 items-end text-xs md:text-sm"
           variants={{
             hidden: {},
             show: {
@@ -258,7 +247,7 @@ const HeroSection = () => {
                 }}
               >
                 <p className="flex items-center gap-2">
-                  {text} <CheckCheck className="w-4 h-4" />
+                  {text} <CheckCheck className="w-3 h-3 md:w-4 md:h-4" />
                 </p>
               </motion.div>
             )

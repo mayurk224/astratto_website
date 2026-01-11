@@ -32,9 +32,12 @@ const ServiceCard = ({ title, desc, image }) => {
             }
       }
       transition={{ duration: 0.35, ease: easePremium }}
-      className="group relative border border-purple-500/60 w-md rounded-3xl p-5 space-y-5 overflow-hidden bg-white"
+      className="
+        group relative border border-purple-500/60
+        w-87.5 md:w-90 lg:w-105
+        rounded-3xl p-5 space-y-5 overflow-hidden bg-white
+      "
     >
-      {/* soft glow */}
       {!reduce && (
         <div className="pointer-events-none absolute -inset-24 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100">
           <div className="h-full w-full bg-linear-to-r from-purple-500/25 via-fuchsia-500/15 to-transparent" />
