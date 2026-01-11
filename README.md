@@ -1,16 +1,125 @@
-# React + Vite
+# Astratto - Creative Design Agency Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, animated portfolio website for a creative design agency specializing in motion graphics, brand identity, and UI/UX design. Built with React, Vite, Tailwind CSS, and Framer Motion for stunning animations.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Modern Design**: Clean, contemporary layout with smooth animations
+- **Interactive Elements**: Hover effects, scroll animations, and interactive components
+- **Responsive Layout**: Mobile-first design that works on all screen sizes
+- **Performance Optimized**: Built with modern tooling for fast loading
+- **Accessibility**: Reduced motion support for users with motion sensitivity
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend Framework**: React 19
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion, GSAP
+- **Icons**: Lucide React
+- **Linting**: ESLint
 
-## Expanding the ESLint configuration
+## 📋 Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+├── components/          # Reusable components
+│   ├── Footer.jsx      # Footer with animated elements
+│   ├── Magnetic.jsx    # Magnetic hover effect component
+│   ├── Navbar.jsx      # Navigation header
+│   ├── ProjectCard.jsx # Project display card
+│   └── ServiceCard.jsx # Service display card
+├── sections/            # Main page sections
+│   ├── HeroSection.jsx # Hero section with animations
+│   ├── ProjectSection.jsx # Project showcase
+│   └── ServicesSection.jsx # Services display
+├── App.jsx             # Main application component
+├── index.css           # Global styles
+└── main.jsx            # Entry point
+```
+
+## 🎨 Design Services
+
+The website showcases the following services:
+
+- **Motion Graphics**: Dynamic visual content that brings stories to life through animation
+- **Brand Identity**: Comprehensive brand strategy, logo design, and visual identity systems
+- **UI/UX Design**: Intuitive, accessible, and effective user interfaces and experiences
+
+## 📦 Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+```
+
+2. Navigate to the project directory:
+```bash
+cd astratto_website
+```
+
+3. Install dependencies:
+```bash
+npm install
+```
+
+4. Start the development server:
+```bash
+npm run dev
+```
+
+5. Open your browser to `http://localhost:5173`
+
+## 🚀 Usage
+
+### Development
+```bash
+npm run dev
+```
+Starts the development server with hot reloading.
+
+### Build
+```bash
+npm run build
+```
+Creates a production-ready build in the `dist` folder.
+
+### Linting
+```bash
+npm run lint
+```
+Checks code for linting errors.
+
+### Preview
+```bash
+npm run preview
+```
+Locally preview the production build.
+
+## 📸 Screenshots
+
+*Note: Add screenshots of the website showcasing the hero section, services, and project sections*
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+Mayur K.
+
+## 📞 Contact
+
+Connect with us to discuss your next creative project!
+
+---
+
+*Crafted with ❤️ for creative professionals who want to showcase their work with stunning animations and modern design.*
