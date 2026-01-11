@@ -255,7 +255,7 @@ const Footer = () => {
             className="flex flex-col md:flex-row justify-between items-center text-slate-400 text-sm font-normal space-y-6 md:space-y-0"
           >
             <motion.div variants={item} className="text-center md:text-left">
-              Via della Creatività, 23, 20121 Milano
+              Made with ❤️ by Mayur K.
             </motion.div>
 
             <motion.div
