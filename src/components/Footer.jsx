@@ -1,175 +1,338 @@
 import { Instagram, Linkedin } from "lucide-react";
 import React from "react";
+import { motion, useReducedMotion } from "framer-motion";
+
+const easePremium = [0.16, 1, 0.3, 1];
+
+const footerWrap = {
+  hidden: { opacity: 0, y: 26, filter: "blur(12px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.9, ease: easePremium },
+  },
+};
+
+const stagger = (delayChildren = 0.1) => ({
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08, delayChildren } },
+});
+
+const item = {
+  hidden: { opacity: 0, y: 16, filter: "blur(10px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: easePremium },
+  },
+};
 
 const Footer = () => {
+  const reduce = useReducedMotion();
+
   return (
-    <footer>
-      <div class="rounded-[3rem] border border-slate-100 shadow-sm relative overflow-hidden flex flex-col justify-between min-h-162.5">
-        {/* <!-- Content Area --> */}
-        <div class="grow flex flex-col items-center justify-center px-6 pt-20 pb-12 relative w-full z-10">
-          {/* <!-- Floating Sparkles (Top Left) --> */}
-          {/* <!-- Using custom SVG for the diamond star shape seen in image --> */}
-          <div class="absolute top-16 left-6 lg:left-24 hidden md:flex flex-col items-center gap-1 transform -rotate-12">
-            <div class="relative">
-              {/* <!-- Large Star --> */}
+    <motion.footer
+      variants={footerWrap}
+      initial={reduce ? false : "hidden"}
+      whileInView={reduce ? undefined : "show"}
+      viewport={{ once: true, amount: 0.25 }}
+    >
+      <div className="rounded-[3rem] border border-slate-100 shadow-sm relative overflow-hidden flex flex-col justify-between min-h-162.5">
+        {/* Content Area */}
+        <div className="grow flex flex-col items-center justify-center px-6 pt-20 pb-12 relative w-full z-10">
+          {/* Floating Sparkles */}
+          <motion.div
+            className="absolute top-16 left-6 lg:left-24 hidden md:flex flex-col items-center gap-1 transform -rotate-12"
+            initial={
+              reduce ? false : { opacity: 0, y: 10, filter: "blur(8px)" }
+            }
+            whileInView={
+              reduce ? {} : { opacity: 1, y: 0, filter: "blur(0px)" }
+            }
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.7, ease: easePremium }}
+            animate={
+              reduce
+                ? undefined
+                : {
+                    y: [0, -6, 0],
+                    rotate: [-12, -10, -12],
+                  }
+            }
+            style={
+              reduce
+                ? undefined
+                : {
+                    transition: "transform 6s ease-in-out",
+                  }
+            }
+          >
+            {/* Stars */}
+            <motion.div
+              className="relative"
+              animate={
+                reduce
+                  ? undefined
+                  : {
+                      y: [0, -5, 0],
+                      scale: [1, 1.03, 1],
+                    }
+              }
+              transition={
+                reduce
+                  ? undefined
+                  : { duration: 4.5, ease: "easeInOut", repeat: Infinity }
+              }
+            >
+              {/* Large Star */}
               <svg
                 width="48"
                 height="48"
                 viewBox="0 0 24 24"
                 fill="#FACC15"
-                class="text-yellow-400 drop-shadow-sm"
+                className="text-yellow-400 drop-shadow-sm"
               >
                 <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
               </svg>
-              {/* <!-- Small Star Top Right --> */}
-              <svg
+
+              {/* Small Star Top Right */}
+              <motion.svg
                 width="22"
                 height="22"
                 viewBox="0 0 24 24"
                 fill="#FACC15"
-                class="text-yellow-400 absolute -top-3 -right-3"
+                className="text-yellow-400 absolute -top-3 -right-3"
+                animate={reduce ? undefined : { rotate: [0, 12, 0] }}
+                transition={
+                  reduce
+                    ? undefined
+                    : { duration: 3.5, ease: "easeInOut", repeat: Infinity }
+                }
               >
                 <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
-              </svg>
-              {/* <!-- Small Star Bottom Left --> */}
-              <svg
+              </motion.svg>
+
+              {/* Small Star Bottom Left */}
+              <motion.svg
                 width="18"
                 height="18"
                 viewBox="0 0 24 24"
                 fill="#FACC15"
-                class="text-yellow-400 absolute bottom-0 -left-4"
+                className="text-yellow-400 absolute bottom-0 -left-4"
+                animate={reduce ? undefined : { y: [0, 4, 0] }}
+                transition={
+                  reduce
+                    ? undefined
+                    : { duration: 3.2, ease: "easeInOut", repeat: Infinity }
+                }
               >
                 <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
-              </svg>
-            </div>
-          </div>
+              </motion.svg>
+            </motion.div>
+          </motion.div>
 
-          {/* <!-- Preheading --> */}
-          <h2 class="text-fuchsia-500 font-medium text-lg md:text-xl mb-7 tracking-normal text-center">
-            Open the door to forging your brand's story
-          </h2>
+          {/* Header group */}
+          <motion.div
+            variants={stagger(0.05)}
+            initial={reduce ? false : "hidden"}
+            whileInView={reduce ? undefined : "show"}
+            viewport={{ once: true, amount: 0.6 }}
+            className="w-full"
+          >
+            {/* Preheading */}
+            <motion.h2
+              variants={item}
+              className="text-fuchsia-500 font-medium text-lg md:text-xl mb-7 tracking-normal text-center"
+            >
+              Open the door to forging your brand's story
+            </motion.h2>
 
-          {/* <!-- Main Title --> */}
-          <div class="relative max-w-6xl mx-auto z-20">
-            <h1 class="text-4xl md:text-6xl lg:text-[4.5rem] font-medium text-center tracking-tight text-slate-900 leading-[1.15] md:leading-[1.1]">
-              Embark on a Transformative Journey <br class="hidden lg:block" />
-              Shaping
-              {/* <!-- Highlighted Text --> */}
-              <span class="relative inline-block mx-1 align-bottom">
-                <span class="absolute inset-0 bg-amber-400 rounded-full transform -rotate-1 scale-105 origin-center -z-10 shadow-sm"></span>
-                <span class="relative text-white px-2 md:px-4 py-1 block">
-                  Your Brand's Destiny
+            {/* Main Title */}
+            <div className="relative max-w-6xl mx-auto z-20">
+              <motion.h1
+                variants={item}
+                className="text-4xl md:text-6xl lg:text-[4.5rem] font-medium text-center tracking-tight text-slate-900 leading-[1.15] md:leading-[1.1]"
+              >
+                Embark on a Transformative Journey{" "}
+                <br className="hidden lg:block" />
+                Shaping {/* Highlighted Text */}
+                <span className="relative inline-block mx-1 align-bottom">
+                  {/* highlight wipe */}
+                  <motion.span
+                    initial={reduce ? false : { scaleX: 0, opacity: 0 }}
+                    whileInView={reduce ? {} : { scaleX: 1, opacity: 1 }}
+                    viewport={{ once: true, amount: 0.8 }}
+                    transition={{
+                      duration: 0.7,
+                      delay: 0.15,
+                      ease: easePremium,
+                    }}
+                    className="absolute inset-0 bg-amber-400 rounded-full transform -rotate-1 scale-105 origin-left -z-10 shadow-sm"
+                  />
+                  <span className="relative text-white px-2 md:px-4 py-1 block">
+                    Your Brand's Destiny
+                  </span>
                 </span>
-              </span>
-              Through Our <br class="hidden lg:block" />
-              Dedicated Partnership
-            </h1>
+                Through Our <br className="hidden lg:block" />
+                Dedicated Partnership
+              </motion.h1>
 
-            {/* <!-- Rotating Badge Sticker --> */}
-            <div className="absolute bottom-10 right-0 w-32 h-32 rounded-full bg-purple-700 flex items-center justify-center shadow-xl border-4 border-white">
+              {/* Rotating Badge Sticker */}
+              <motion.div
+                initial={reduce ? false : { opacity: 0, scale: 0.9, y: 10 }}
+                whileInView={reduce ? {} : { opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.7 }}
+                transition={{ duration: 0.75, delay: 0.2, ease: easePremium }}
+                whileHover={reduce ? {} : { scale: 1.03 }}
+                className="absolute bottom-10 right-0 w-32 h-32 rounded-full bg-purple-700 flex items-center justify-center shadow-xl border-4 border-white"
+              >
                 {/* Rotating Text Path */}
-                <svg
-                  className="absolute w-full h-full p-1"
-                  viewBox="0 0 100 100"
-                  style={{
-                    animation: "spin 12s linear infinite",
-                  }}
-                >
-                  <defs>
-                    <path
-                      id="circlePath"
-                      d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-                      fill="none"
-                    />
-                  </defs>
-                  <text className="fill-white text-[11px] font-bold uppercase tracking-[0.18em]">
-                    <textPath xlinkHref="#circlePath" startOffset="0%">
-                      Let's get started • Let's get started •
-                    </textPath>
-                  </text>
-                </svg>
+                {!reduce && (
+                  <motion.svg
+                    className="absolute w-full h-full p-1"
+                    viewBox="0 0 100 100"
+                    animate={{ rotate: 360 }}
+                    transition={{
+                      duration: 12,
+                      ease: "linear",
+                      repeat: Infinity,
+                    }}
+                  >
+                    <defs>
+                      <path
+                        id="circlePath"
+                        d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                        fill="none"
+                      />
+                    </defs>
+                    <text className="fill-white text-[11px] font-bold uppercase tracking-[0.18em]">
+                      <textPath xlinkHref="#circlePath" startOffset="0%">
+                        Let's get started • Let's get started •
+                      </textPath>
+                    </text>
+                  </motion.svg>
+                )}
 
                 {/* Center Star Icon */}
-                <svg
+                <motion.svg
                   width="36"
                   height="36"
                   viewBox="0 0 24 24"
                   fill="#FACC15"
                   className="relative z-10"
+                  animate={
+                    reduce
+                      ? undefined
+                      : { rotate: [0, 6, 0], scale: [1, 1.03, 1] }
+                  }
+                  transition={
+                    reduce
+                      ? undefined
+                      : { duration: 2.6, ease: "easeInOut", repeat: Infinity }
+                  }
                 >
                   <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
-                </svg>
-                <style>{`
-        @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-      `}</style>
-              </div>
-          </div>
+                </motion.svg>
+              </motion.div>
+            </div>
 
-          {/* <!-- Body Description --> */}
-          <p class="mt-10 text-slate-400 text-lg md:text-xl font-normal text-center max-w-3xl leading-relaxed mx-auto">
-            Join us on a transformative journey to shape your brand's destiny
-            through our dedicated partnership, crafting a narrative that
-            resonates
-          </p>
+            {/* Body Description */}
+            <motion.p
+              variants={item}
+              className="mt-10 text-slate-400 text-lg md:text-xl font-normal text-center max-w-3xl leading-relaxed mx-auto"
+            >
+              Join us on a transformative journey to shape your brand's destiny
+              through our dedicated partnership, crafting a narrative that
+              resonates
+            </motion.p>
+          </motion.div>
         </div>
 
-        {/* <!-- Footer --> */}
-        <div class="w-full px-8 md:px-16 pb-10 z-20">
-          {/* <!-- Divider --> */}
-          <div class="h-px bg-slate-100 w-full mb-8"></div>
+        {/* Footer bottom */}
+        <div className="w-full px-8 md:px-16 pb-10 z-20">
+          {/* Divider line */}
+          <motion.div
+            initial={reduce ? false : { scaleX: 0, opacity: 0 }}
+            whileInView={reduce ? {} : { scaleX: 1, opacity: 1 }}
+            viewport={{ once: true, amount: 0.9 }}
+            transition={{ duration: 0.7, ease: easePremium }}
+            className="origin-left h-px bg-slate-100 w-full mb-8"
+          />
 
-          <div class="flex flex-col md:flex-row justify-between items-center text-slate-400 text-sm font-normal space-y-6 md:space-y-0">
-            {/* <!-- Address --> */}
-            <div class="text-center md:text-left min-w-50">
+          <motion.div
+            variants={stagger(0.05)}
+            initial={reduce ? false : "hidden"}
+            whileInView={reduce ? undefined : "show"}
+            viewport={{ once: true, amount: 0.9 }}
+            className="flex flex-col md:flex-row justify-between items-center text-slate-400 text-sm font-normal space-y-6 md:space-y-0"
+          >
+            {/* Address */}
+            <motion.div
+              variants={item}
+              className="text-center md:text-left min-w-50"
+            >
               Via della Creatività, 23, 20121 Milano
-            </div>
+            </motion.div>
 
-            {/* <!-- Social Icons --> */}
-            <div class="flex items-center justify-center space-x-8">
-              {/* <!-- X / Twitter Icon (Custom SVG for brand accuracy) --> */}
-              <a
+            {/* Social Icons */}
+            <motion.div
+              variants={item}
+              className="flex items-center justify-center space-x-8"
+            >
+              {/* X / Twitter */}
+              <motion.a
                 href="#"
-                class="hover:text-slate-600 transition-colors duration-200"
+                whileHover={reduce ? {} : { y: -2, scale: 1.04 }}
+                transition={{ duration: 0.25, ease: easePremium }}
+                className="hover:text-slate-600 transition-colors duration-200"
               >
-                <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-4 h-4"
+                >
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
-              </a>
-              <a
+              </motion.a>
+
+              <motion.a
                 href="#"
-                class="hover:text-slate-600 transition-colors duration-200"
+                whileHover={reduce ? {} : { y: -2, scale: 1.04 }}
+                transition={{ duration: 0.25, ease: easePremium }}
+                className="hover:text-slate-600 transition-colors duration-200"
               >
                 <Linkedin className="w-5 h-5" />
-              </a>
-              <a
+              </motion.a>
+
+              <motion.a
                 href="#"
-                class="hover:text-slate-600 transition-colors duration-200"
+                whileHover={reduce ? {} : { y: -2, scale: 1.04 }}
+                transition={{ duration: 0.25, ease: easePremium }}
+                className="hover:text-slate-600 transition-colors duration-200"
               >
                 <Instagram className="w-5 h-5" />
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
 
-            {/* <!-- Legal / Copyright --> */}
-            <div class="flex items-center justify-end space-x-6 min-w-50">
+            {/* Legal */}
+            <motion.div
+              variants={item}
+              className="flex items-center justify-end space-x-6 min-w-50"
+            >
               <a
                 href="#"
-                class="hover:text-slate-600 transition-colors duration-200"
+                className="hover:text-slate-600 transition-colors duration-200"
               >
                 Privacy & Cookie Policy
               </a>
-              <span class="opacity-70">Astratto © 2023</span>
-            </div>
-          </div>
+              <span className="opacity-70">Astratto © 2025</span>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

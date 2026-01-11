@@ -1,130 +1,132 @@
 import React from "react";
-import ProjectCard from "../components/ProjectCard";
 import { ArrowUpRight } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import ProjectCard from "../components/ProjectCard";
+
+const easePremium = [0.16, 1, 0.3, 1];
+
+const sectionV = {
+  hidden: { opacity: 0, y: 26, filter: "blur(10px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.9, ease: easePremium },
+  },
+};
+
+const headerWrapV = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
+};
+
+const headerItemV = {
+  hidden: { opacity: 0, y: 14, filter: "blur(8px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.65, ease: easePremium },
+  },
+};
+
+const gridV = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
+};
 
 const ProjectSection = () => {
+  const reduce = useReducedMotion();
+
+  const projectsLeft = [
+    {
+      img: "/pexels-photo-6157698.jpeg",
+      alt: "Lighthouse 3D Illustration",
+      tag: "2D Animation",
+      title: "The Lighthouse",
+      desc: "Adding a new dimension to projects through thoughtfully designed 2D animations",
+    },
+    {
+      img: "/pexels-photo-8828312.jpeg",
+      alt: "Compass 3D Illustration",
+      tag: "Motion Graphics",
+      title: "Navigating Possibilities",
+      desc: "Motion graphics breathe life into the project, blending direction and creativity",
+    },
+  ];
+
+  const projectsRight = [
+    {
+      img: "/pexels-photo-1740175.jpeg",
+      alt: "House 3D Illustration",
+      tag: "Visual Identity",
+      title: "Snowscape Haven",
+      desc: "Crafting a visual identity that mirrors the serenity and allure of a winter sanctuary",
+    },
+    {
+      img: "/pexels-photo-34411122.jpeg",
+      alt: "Window 3D Illustration",
+      tag: "3D Animation",
+      title: "Nocturnal Symphony",
+      desc: "Through 3D artistry, we orchestrate an animated ode to the evening, a dance of shadows and dreams",
+    },
+  ];
+
   return (
     <div className="p-10">
-      <section class="">
-        {/* <!-- Header Section --> */}
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
-            <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-gray-900">
-                Recent Projects
-            </h2>
-            <p class="text-lg text-gray-500 max-w-sm leading-relaxed md:text-right">
-                Step into the world of our most recent projects, a showcase of our unwavering commitment to progressive design.
-            </p>
-        </div>
+      <motion.section
+        variants={sectionV}
+        initial={reduce ? false : "hidden"}
+        whileInView={reduce ? undefined : "show"}
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        {/* Header */}
+        <motion.div
+          variants={headerWrapV}
+          initial={reduce ? false : "hidden"}
+          whileInView={reduce ? undefined : "show"}
+          viewport={{ once: true, amount: 0.6 }}
+          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8"
+        >
+          <motion.h2
+            variants={headerItemV}
+            className="text-4xl md:text-5xl font-medium tracking-tight text-gray-900"
+          >
+            Recent Projects
+          </motion.h2>
 
-        {/* <!-- Grid Container --> */}
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
-            
-            {/* <!-- Left Column --> */}
-            <div class="flex flex-col gap-16">
-                
-                {/* <!-- Project 1 --> */}
-                <article class="group cursor-pointer">
-                    <div class="relative overflow-hidden rounded-4xl aspect-4/3 w-full">
-                        <img src="https://images.pexels.com/photos/6157698/pexels-photo-6157698.jpeg" alt="Lighthouse 3D Illustration" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"/>
-                        
-                        {/* <!-- Top Right Icon --> */}
-                        <div class="absolute top-6 right-6 bg-white w-15 h-15 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:rotate-45 shadow-sm">
-                            <ArrowUpRight className="w-6 h-6 text-gray-900" />
-                        </div>
-                        
-                        {/* <!-- Bottom Left Tag --> */}
-                        <div class="absolute bottom-6 left-6 bg-white px-5 py-2.5 rounded-full shadow-sm">
-                            <span class="text-sm font-medium text-gray-900 block">2D Animation</span>
-                        </div>
-                    </div>
-                    <div class="mt-8 space-y-3">
-                        <h3 class="text-3xl font-medium tracking-tight text-fuchsia-500 group-hover:text-fuchsia-600 transition-colors">
-                            The Lighthouse
-                        </h3>
-                        <p class="text-lg text-gray-500 leading-relaxed max-w-md">
-                            Adding a new dimension to projects through thoughtfully designed 2D animations
-                        </p>
-                    </div>
-                </article>
+          <motion.p
+            variants={headerItemV}
+            className="text-lg text-gray-500 max-w-sm leading-relaxed md:text-right"
+          >
+            Step into the world of our most recent projects, a showcase of our
+            unwavering commitment to progressive design.
+          </motion.p>
+        </motion.div>
 
-                {/* <!-- Project 3 --> */}
-                <article class="group cursor-pointer">
-                    <div class="relative overflow-hidden rounded-4xl aspect-4/3 w-full">
-                        <img src="https://images.pexels.com/photos/8828312/pexels-photo-8828312.jpeg" alt="Compass 3D Illustration" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"/>
-                        
-                        <div class="absolute top-6 right-6 bg-white w-15 h-15 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:rotate-45 shadow-sm">
-                            <ArrowUpRight className="w-6 h-6 text-gray-900" />
-                        </div>
-                        
-                        <div class="absolute bottom-6 left-6 bg-white px-5 py-2.5 rounded-full shadow-sm">
-                            <span class="text-sm font-medium text-gray-900 block">Motion Graphics</span>
-                        </div>
-                    </div>
-                    <div class="mt-8 space-y-3">
-                        <h3 class="text-3xl font-medium tracking-tight text-fuchsia-500 group-hover:text-fuchsia-600 transition-colors">
-                            Navigating Possibilities
-                        </h3>
-                        <p class="text-lg text-gray-500 leading-relaxed max-w-md">
-                            Motion graphics breathe life into the project, blending direction and creativity
-                        </p>
-                    </div>
-                </article>
+        {/* Grid */}
+        <motion.div
+          variants={gridV}
+          initial={reduce ? false : "hidden"}
+          whileInView={reduce ? undefined : "show"}
+          viewport={{ once: true, amount: 0.25 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16"
+        >
+          {/* Left Column */}
+          <div className="flex flex-col gap-16">
+            {projectsLeft.map((p, i) => (
+              <ProjectCard key={i} {...p} />
+            ))}
+          </div>
 
-            </div>
-
-            {/* <!-- Right Column (Staggered) --> */}
-            <div class="flex flex-col gap-16 md:pt-32">
-                
-                {/* <!-- Project 2 --> */}
-                <article class="group cursor-pointer">
-                    <div class="relative overflow-hidden rounded-4xl aspect-4/3 w-full">
-                        <img src="https://images.pexels.com/photos/1740175/pexels-photo-1740175.jpeg" alt="House 3D Illustration" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"/>
-                        
-                        <div class="absolute top-6 right-6 bg-white w-15 h-15 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:rotate-45 shadow-sm">
-                            <ArrowUpRight className="w-6 h-6 text-gray-900" />
-                        </div>
-                        
-                        <div class="absolute bottom-6 left-6 bg-white px-5 py-2.5 rounded-full shadow-sm">
-                            <span class="text-sm font-medium text-gray-900 block">Visual Identity</span>
-                        </div>
-                    </div>
-                    <div class="mt-8 space-y-3">
-                        <h3 class="text-3xl font-medium tracking-tight text-fuchsia-500 group-hover:text-fuchsia-600 transition-colors">
-                            Snowscape Haven
-                        </h3>
-                        <p class="text-lg text-gray-500 leading-relaxed max-w-md">
-                            Crafting a visual identity that mirrors the serenity and allure of a winter sanctuary
-                        </p>
-                    </div>
-                </article>
-
-                {/* <!-- Project 4 --> */}
-                <article class="group cursor-pointer">
-                    <div class="relative overflow-hidden rounded-4xl aspect-4/3 w-full">
-                        <img src="https://images.pexels.com/photos/34411122/pexels-photo-34411122.jpeg" alt="Window 3D Illustration" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"/>
-                        
-                        <div class="absolute top-6 right-6 bg-white w-15 h-15 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:rotate-45 shadow-sm">
-                            
-                            <ArrowUpRight className="w-6 h-6 text-gray-900" />
-                        </div>
-                        
-                        <div class="absolute bottom-6 left-6 bg-white px-5 py-2.5 rounded-full shadow-sm">
-                            <span class="text-sm font-medium text-gray-900 block">3D Animation</span>
-                        </div>
-                    </div>
-                    <div class="mt-8 space-y-3">
-                        <h3 class="text-3xl font-medium tracking-tight text-fuchsia-500 group-hover:text-fuchsia-600 transition-colors">
-                            Nocturnal Symphony
-                        </h3>
-                        <p class="text-lg text-gray-500 leading-relaxed max-w-md">
-                            Through 3D artistry, we orchestrate an animated ode to the evening, a dance of shadows and dreams
-                        </p>
-                    </div>
-                </article>
-
-            </div>
-        </div>
-    </section>
+          {/* Right Column */}
+          <div className="flex flex-col gap-16 md:pt-32">
+            {projectsRight.map((p, i) => (
+              <ProjectCard key={i} {...p} />
+            ))}
+          </div>
+        </motion.div>
+      </motion.section>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import React from "react";
+import { Magnetic } from "./Magnetic";
 
 const Navbar = () => {
   return (
@@ -26,10 +27,15 @@ const Navbar = () => {
         </div>
         <div className="cta w-full flex items-center gap-4 justify-end font-semibold">
           <a href="">Career</a>
-          <a href="" className="flex items-center gap-2 border border-amber-600 rounded-full px-4 py-1.5">
-            Contact us
-            <ArrowUpRight />
-          </a>
+          <Magnetic>
+            <a
+              href=""
+              className="flex items-center gap-2 border border-amber-600 rounded-full px-4 py-1.5 group"
+            >
+              Contact us
+              <ArrowUpRight className="group-hover:rotate-45 transition-all ease-out duration-300" />
+            </a>
+          </Magnetic>
         </div>
       </div>
     </nav>
