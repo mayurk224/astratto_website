@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.animate-spin-slow {
+    animation: spin 12s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
