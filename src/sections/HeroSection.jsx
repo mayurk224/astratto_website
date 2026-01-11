@@ -1,0 +1,261 @@
+import { CheckCheck, WandSparkles } from "lucide-react";
+import React from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { Magnetic } from "../components/Magnetic";
+
+const easePremium = [0.16, 1, 0.3, 1];
+
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.09,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+const fadeUpBlur = {
+  hidden: { opacity: 0, y: 18, filter: "blur(10px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.85, ease: easePremium },
+  },
+};
+
+const word = {
+  hidden: { opacity: 0, y: 22, filter: "blur(10px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.75, ease: easePremium },
+  },
+};
+
+const imageIn = {
+  hidden: { opacity: 0, scale: 0.96, filter: "blur(14px)" },
+  show: {
+    opacity: 1,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { duration: 1.1, ease: easePremium },
+  },
+};
+
+const badge = {
+  hidden: { opacity: 0, x: 18, filter: "blur(10px)" },
+  show: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.75, ease: easePremium },
+  },
+};
+
+const HeroSection = () => {
+  const reduce = useReducedMotion();
+
+  return (
+    <motion.div
+      initial="hidden"
+      animate="show"
+      variants={container}
+      className="relative"
+    >
+      <div className="flex items-center justify-center flex-col h-[85vh] relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0  from-transparent via-transparent to-black/5" />
+        </div>
+
+        <motion.p
+          variants={fadeUpBlur}
+          className="text-xl md:text-2xl font-semibold text-gray-400 mb-8"
+        >
+          Ignite the Spark of Inspiration
+        </motion.p>
+
+        <div className="flex items-center justify-center flex-col text-center text-4xl md:text-6xl lg:text-8xl font-semibold mb-6 z-20 relative">
+          <motion.h1 className="tracking-wider leading-snug">
+            <motion.span variants={word} className="inline-block mr-4">
+              Unleash
+            </motion.span>
+            <motion.span variants={word} className="inline-block">
+              Your
+            </motion.span>
+          </motion.h1>
+
+          <motion.div
+            variants={fadeUpBlur}
+            className="flex items-center justify-center gap-2 md:gap-5 z-20 mt-6"
+          >
+            <span>Brand</span>
+
+            <motion.div
+              className="rounded-full p-1 h-20 w-20 md:h-30 md:w-30 shrink-0 will-change-transform"
+              initial={{
+                opacity: 0,
+                scale: 0.9,
+                rotate: 12,
+                filter: "blur(10px)",
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                rotate: 0,
+                filter: "blur(0px)",
+              }}
+              transition={{ duration: 1.05, ease: easePremium, delay: 0.35 }}
+            >
+              <motion.img
+                src="/heroLogo.svg"
+                alt="Brand Logo"
+                className="object-cover h-full w-full"
+                animate={reduce ? {} : { rotate: 360 }}
+                transition={
+                  reduce
+                    ? {}
+                    : {
+                        duration: 26,
+                        ease: "linear",
+                        repeat: Infinity,
+                        delay: 1.6,
+                      }
+                }
+              />
+            </motion.div>
+
+            <span>With Our</span>
+          </motion.div>
+
+          <motion.h1
+            variants={fadeUpBlur}
+            className="text-4xl md:text-6xl lg:text-8xl font-semibold tracking-wider leading-snug mt-6"
+          >
+            Magic Design
+          </motion.h1>
+        </div>
+
+        <motion.div
+          variants={imageIn}
+          className="absolute top-5 left-5 md:top-10 md:left-10 w-40 h-48 md:w-60 md:h-72 lg:w-80 lg:h-96 bg-gray-900/50 -rotate-12 rounded-b-full overflow-hidden will-change-transform"
+          animate={reduce ? {} : { y: [0, 10, 0], x: [0, -6, 0] }}
+          transition={
+            reduce
+              ? {}
+              : {
+                  duration: 10,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  delay: 1.9,
+                }
+          }
+        >
+          <img
+            src="/heroLeft.png"
+            alt="Design inspiration left"
+            className="object-cover rotate-12 h-full w-full scale-125"
+          />
+        </motion.div>
+
+        <motion.div
+          variants={imageIn}
+          className="absolute bottom-5 right-5 md:bottom-10 md:right-10 w-40 h-48 md:w-60 md:h-72 lg:w-80 lg:h-96 bg-gray-900/50 rotate-12 rounded-t-full overflow-hidden will-change-transform"
+          animate={reduce ? {} : { y: [0, -10, 0], x: [0, 6, 0] }}
+          transition={
+            reduce
+              ? {}
+              : {
+                  duration: 11,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  delay: 1.9,
+                }
+          }
+        >
+          <img
+            src="https://images.pexels.com/photos/10643964/pexels-photo-10643964.jpeg"
+            alt="Design inspiration right"
+            className="object-cover -rotate-12 h-full w-full scale-125"
+          />
+        </motion.div>
+
+        <Magnetic>
+          <motion.div
+            variants={fadeUpBlur}
+            className="absolute bottom-5 left-5 md:bottom-10 md:left-10 flex gap-2 md:gap-3 items-center font-semibold"
+          >
+            <motion.button
+              whileHover={
+                reduce
+                  ? {}
+                  : {
+                      y: -2,
+                      scale: 1.02,
+                      boxShadow: "0 12px 40px rgba(217, 119, 6, 0.25)",
+                    }
+              }
+              whileTap={reduce ? {} : { scale: 0.97 }}
+              transition={{ duration: 0.25, ease: easePremium }}
+              className="border border-amber-600 rounded-full px-3 py-1 md:px-5 md:py-2 hover:bg-amber-600/10 transition-colors duration-300"
+            >
+              Create Magic
+            </motion.button>
+
+            <motion.div
+              whileHover={
+                reduce
+                  ? {}
+                  : {
+                      scale: 1.06,
+                      rotate: 6,
+                      boxShadow: "0 16px 50px rgba(168, 85, 247, 0.35)",
+                    }
+              }
+              whileTap={reduce ? {} : { scale: 0.96 }}
+              transition={{ duration: 0.25, ease: easePremium }}
+              animate={reduce ? {} : { y: [0, -6, 0] }}
+              className="w-10 h-10 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-purple-700 text-white cursor-pointer will-change-transform"
+            >
+              <WandSparkles />
+            </motion.div>
+          </motion.div>
+        </Magnetic>
+
+        <motion.div
+          className="absolute top-5 right-5 md:top-10 md:right-10 flex flex-col gap-2 items-end text-xs md:text-sm"
+          variants={{
+            hidden: {},
+            show: {
+              transition: { staggerChildren: 0.12, delayChildren: 0.45 },
+            },
+          }}
+        >
+          {["For designers and creators", "Unlock your creativity"].map(
+            (text, idx) => (
+              <motion.div
+                key={idx}
+                variants={badge}
+                whileHover={reduce ? {} : { y: -2, scale: 1.02 }}
+                transition={{ duration: 0.25, ease: easePremium }}
+                animate={reduce ? {} : { y: [0, -4, 0] }}
+                className="badge rounded-full px-2 py-1 bg-purple-700 text-white cursor-pointer will-change-transform"
+                style={{
+                  transitionDelay: `${idx * 120}ms`,
+                }}
+              >
+                <p className="flex items-center gap-2">
+                  {text} <CheckCheck className="w-3 h-3 md:w-4 md:h-4" />
+                </p>
+              </motion.div>
+            )
+          )}
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+};
+
+export default HeroSection;
