@@ -32,7 +32,7 @@ const ServiceCard = ({ title, desc, image }) => {
       transition={{ duration: 0.35, ease: easePremium }}
       className="
         group relative border border-purple-500/60
-        w-87.5 md:w-90 lg:w-107 xl:w-100
+        w-87.5 md:w-90 lg:w-107
         rounded-3xl p-5 space-y-5 overflow-hidden bg-white
       "
     >
