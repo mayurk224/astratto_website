@@ -1,5 +1,3 @@
-// ServiceCard.jsx
-import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
@@ -69,7 +67,9 @@ const ServiceCard = ({ title, desc, image }) => {
       <hr className="border border-purple-600/40" />
 
       <div className="relative flex flex-col space-y-5 overflow-hidden">
-        <p className="text-gray-600 text-sm leading-relaxed">{desc}</p>
+        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+          {desc}
+        </p>
 
         <div className="relative overflow-hidden rounded-2xl">
           {!reduce && (
