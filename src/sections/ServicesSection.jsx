@@ -37,38 +37,6 @@ const ServicesSection = () => {
   const cardContainerRef = useRef(null);
   const [activeSlide, setActiveSlide] = useState(0);
 
-  const scrollLeft = () => {
-    if (cardContainerRef.current) {
-      const scrollAmount =
-        window.innerWidth < 768
-          ? 300
-          : cardContainerRef.current.clientWidth * 0.8;
-      cardContainerRef.current.scrollBy({
-        left: -scrollAmount,
-        behavior: "smooth",
-      });
-
-      // Update active slide
-      setActiveSlide((prev) => Math.max(0, prev - 1));
-    }
-  };
-
-  const scrollRight = () => {
-    if (cardContainerRef.current) {
-      const scrollAmount =
-        window.innerWidth < 768
-          ? 300
-          : cardContainerRef.current.clientWidth * 0.8;
-      cardContainerRef.current.scrollBy({
-        left: scrollAmount,
-        behavior: "smooth",
-      });
-
-      // Update active slide
-      setActiveSlide((prev) => Math.min(services.length - 1, prev + 1));
-    }
-  };
-
   const services = [
     {
       title: "Motion\nGraphics",
@@ -87,25 +55,45 @@ const ServicesSection = () => {
     },
   ];
 
-  // Effect to detect scroll and update active slide
+  const getScrollAmount = () => {
+    const container = cardContainerRef.current;
+    if (!container) return 320;
+
+    const firstCard = container.querySelector("[data-service-card]");
+    if (firstCard) return firstCard.clientWidth + 20; 
+    return container.clientWidth * 0.85;
+  };
+
+  const scrollLeft = () => {
+    if (!cardContainerRef.current) return;
+    cardContainerRef.current.scrollBy({
+      left: -getScrollAmount(),
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight = () => {
+    if (!cardContainerRef.current) return;
+    cardContainerRef.current.scrollBy({
+      left: getScrollAmount(),
+      behavior: "smooth",
+    });
+  };
+
   useEffect(() => {
     const container = cardContainerRef.current;
     if (!container) return;
 
     const handleScroll = () => {
-      const scrollLeft = container.scrollLeft;
-      const containerWidth = container.clientWidth;
+      const firstCard = container.querySelector("[data-service-card]");
+      const cardWidth = firstCard?.clientWidth || container.clientWidth;
 
-      // Calculate which card is currently in view
-      const currentIndex = Math.round(scrollLeft / containerWidth);
-      setActiveSlide(Math.min(currentIndex, services.length - 1));
+      const index = Math.round(container.scrollLeft / (cardWidth + 20));
+      setActiveSlide(Math.max(0, Math.min(index, services.length - 1)));
     };
 
     container.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      container.removeEventListener("scroll", handleScroll);
-    };
+    return () => container.removeEventListener("scroll", handleScroll);
   }, [services.length]);
 
   return (
@@ -143,23 +131,26 @@ const ServicesSection = () => {
             variants={cardsWrapVariants}
             ref={cardContainerRef}
             className="
-              cardContainer
-              flex gap-5
-              overflow-x-auto md:overflow-visible
-              pb-2 md:pb-0
-              snap-x snap-mandatory
-              [-ms-overflow-style:none] [scrollbar-width:none]
-              overflow-hidden
-            "
+    cardContainer flex gap-5
+    overflow-x-auto xl:overflow-visible
+    pb-2 xl:pb-0
+    snap-x snap-mandatory
+    [-ms-overflow-style:none] [scrollbar-width:none]
+  "
           >
             <style>{`
-              .cardContainer::-webkit-scrollbar { display: none; }
-            `}</style>
+    .cardContainer::-webkit-scrollbar { display: none; }
+  `}</style>
 
             {services.map((s, idx) => (
               <div
                 key={idx}
-                className="snap-start shrink-0 min-w-70 sm:min-w-85 md:min-w-0"
+                data-service-card
+                className="
+        snap-start shrink-0
+        min-w-70 sm:min-w-85 md:min-w-95
+        xl:min-w-0
+      "
               >
                 <ServiceCard {...s} />
               </div>
@@ -209,15 +200,20 @@ const ServicesSection = () => {
                   transition={{ duration: 0.6, ease: easePremium }}
                   className="h-1 bg-gray-600 rounded-full cursor-pointer"
                   onClick={() => {
-                    if (cardContainerRef.current) {
-                      const container = cardContainerRef.current;
-                      const containerWidth = container.clientWidth;
-                      container.scrollTo({
-                        left: index * containerWidth,
-                        behavior: "smooth",
-                      });
-                      setActiveSlide(index);
-                    }
+                    const container = cardContainerRef.current;
+                    if (!container) return;
+
+                    const firstCard = container.querySelector(
+                      "[data-service-card]"
+                    );
+                    const cardWidth =
+                      firstCard?.clientWidth || container.clientWidth;
+
+                    container.scrollTo({
+                      left: index * (cardWidth + 20),
+                      behavior: "smooth",
+                    });
+                    setActiveSlide(index);
                   }}
                 />
               ))}
@@ -231,7 +227,7 @@ const ServicesSection = () => {
         whileInView={reduce ? {} : { opacity: 1 }}
         viewport={{ once: true, amount: 0.6 }}
         transition={{ duration: 0.6, ease: easePremium }}
-        className="aboutSection min-h-[60vh] md:h-[60vh] flex items-center justify-center mt-10 md:mt-0"
+        className="aboutSection flex items-center justify-center mt-10 md:mt-5 lg:py-10"
       >
         <div className="flex items-center justify-center flex-col mx-auto space-y-5">
           <motion.p
