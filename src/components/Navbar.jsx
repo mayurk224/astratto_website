@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 bg-white z-50">
-      <div className="flex items-center justify-between border-b border-gray-400 py-5 px-4 md:px-8">
+      <div className="flex items-center justify-between border-b border-gray-400 py-5 px-4 md:px-5">
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
