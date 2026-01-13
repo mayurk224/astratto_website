@@ -2,6 +2,10 @@
 
 A modern, animated portfolio website for a creative design agency specializing in motion graphics, brand identity, and UI/UX design. Built with React, Vite, Tailwind CSS, and Framer Motion for stunning animations.
 
+## 📸 Screenshots
+
+![Astratto Website Preview](./public/preview.jpg)
+
 ## 🚀 Features
 
 - **Modern Design**: Clean, contemporary layout with smooth animations
@@ -95,10 +99,6 @@ Checks code for linting errors.
 npm run preview
 ```
 Locally preview the production build.
-
-## 📸 Screenshots
-
-*Note: Add screenshots of the website showcasing the hero section, services, and project sections*
 
 ## 🤝 Contributing
 
